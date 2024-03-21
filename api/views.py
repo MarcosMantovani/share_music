@@ -10,11 +10,10 @@ from django.http import JsonResponse
 # Create your views here.
 
 
-class RoomView(APIView):
+class RoomView(generics.ListAPIView):
+    queryset = Room.objects.all()
     serializer_class = RoomSerializer
 
-    def get_queryset(self):
-        return Room.objects.all().order_by("id")
 
 class GetRoom(APIView):
     serializer_class = RoomSerializer
@@ -81,6 +80,9 @@ class CreateRoomView(APIView):
                 return Response(RoomSerializer(room).data, status=status.HTTP_201_CREATED)
 
         return Response({'Bad Request': 'Invalid data...'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    def get(self, request, format=None):
+        return Response({"message": "Método GET não permitido para esta URL"}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
     
 class userInRoom(APIView):
     def get(self, request, format=None):
