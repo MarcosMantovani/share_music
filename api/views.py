@@ -3,16 +3,18 @@ from rest_framework import generics, status
 from .serializers import RoomSerializer, CreateRoomSerializer, UpdateRoomSerializer
 from .models import Room
 from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from django.http import JsonResponse
 
 # Create your views here.
 
 
-class RoomView(generics.ListAPIView):
-    queryset = Room.objects.all()
+class RoomView(APIView):
     serializer_class = RoomSerializer
 
+    def get_queryset(self):
+        return Room.objects.all().order_by("id")
 
 class GetRoom(APIView):
     serializer_class = RoomSerializer
