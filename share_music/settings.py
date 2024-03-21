@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-ev=ue6wq6%zpc7s_2==m-mpn$z=7#qpjk(2*99#xs@oc67=#pb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ShareSpotifyMusic.pythonanywhere.com']
 
 
 # Application definition
